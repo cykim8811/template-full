@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.auth.providers.base import OAuthProfile
-from app.exceptions import UserNotFoundError
+from app.exceptions import UsernameAlreadyTakenError, UserNotFoundError
 from app.users.models import OAuthAccount, User
 
 
@@ -32,6 +32,18 @@ class UserService:
                 return candidate
             candidate = f"{base}_{n}"
             n += 1
+
+    async def update_user(self, user: User, username: str | None, avatar_url: str | None) -> User:
+        if username is not None and username != user.username:
+            exists = await self.db.scalar(select(User.id).where(User.username == username))
+            if exists:
+                raise UsernameAlreadyTakenError(username)
+            user.username = username
+        if avatar_url is not None:
+            user.avatar_url = avatar_url
+        await self.db.commit()
+        await self.db.refresh(user)
+        return user
 
     async def upsert_oauth(self, profile: OAuthProfile) -> User:
         # 1. Look up existing OAuth account
