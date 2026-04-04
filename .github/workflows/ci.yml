@@ -31,9 +31,9 @@ jobs:
       postgres:
         image: postgres:16
         env:
-          POSTGRES_USER: coders
-          POSTGRES_PASSWORD: coders
-          POSTGRES_DB: coders_test
+          POSTGRES_USER: template
+          POSTGRES_PASSWORD: template
+          POSTGRES_DB: template_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -52,7 +52,7 @@ jobs:
       - run: uv run --extra dev pytest
         working-directory: backend
         env:
-          TEST_DATABASE_URL: postgresql+asyncpg://coders:coders@localhost:5432/coders_test
+          TEST_DATABASE_URL: postgresql+asyncpg://template:template@localhost:5432/template_test
           SECRET_KEY: test-secret-key
           GITHUB_CLIENT_ID: test-github-client-id
           GITHUB_CLIENT_SECRET: test-github-client-secret

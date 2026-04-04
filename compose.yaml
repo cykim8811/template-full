@@ -2,15 +2,15 @@ services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: coders
-      POSTGRES_PASSWORD: coders
-      POSTGRES_DB: coders
+      POSTGRES_USER: template
+      POSTGRES_PASSWORD: template
+      POSTGRES_DB: template
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U coders"]
+      test: ["CMD-SHELL", "pg_isready -U template"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -52,7 +52,7 @@ services:
     env_file:
       - ./backend/.env
     environment:
-      DATABASE_URL: postgresql+asyncpg://coders:coders@db:5432/coders
+      DATABASE_URL: postgresql+asyncpg://template:template@db:5432/template
       REDIS_URL: redis://redis:6379
     volumes:
       - ./backend:/app

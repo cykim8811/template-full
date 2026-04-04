@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    database_url: str = "postgresql+asyncpg://coders:coders@localhost:5432/coders"
+    database_url: str = "postgresql+asyncpg://template:template@localhost:5432/template"
     redis_url: str = "redis://localhost:6379"
     secret_key: str
     debug: bool = False
