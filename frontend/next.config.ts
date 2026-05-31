@@ -12,7 +12,10 @@ const nextConfig: NextConfig = {
       fallback: [
         {
           source: "/api/:path*",
-          destination: `${process.env.BACKEND_URL}/:path*`,
+          // BACKEND_URL is injected at pod start; Next.js validates the
+          // destination at build time, so we fall back to a syntactically
+          // valid placeholder there.
+          destination: `${process.env.BACKEND_URL ?? "http://localhost:8000"}/:path*`,
         },
       ],
     };
