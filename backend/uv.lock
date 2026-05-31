@@ -225,54 +225,6 @@ wheels = [
 ]
 
 [[package]]
-name = "coders-backend"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "alembic" },
-    { name = "arq" },
-    { name = "asyncpg" },
-    { name = "authlib" },
-    { name = "fastapi" },
-    { name = "httpx" },
-    { name = "pydantic-settings" },
-    { name = "pyjwt" },
-    { name = "redis" },
-    { name = "sqlalchemy", extra = ["asyncio"] },
-    { name = "uvicorn", extra = ["standard"] },
-]
-
-[package.optional-dependencies]
-dev = [
-    { name = "fakeredis" },
-    { name = "httpx" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "alembic", specifier = ">=1.18.4" },
-    { name = "arq", specifier = ">=0.27.0" },
-    { name = "asyncpg", specifier = ">=0.31.0" },
-    { name = "authlib", specifier = ">=1.6.9" },
-    { name = "fakeredis", extras = ["aioredis"], marker = "extra == 'dev'", specifier = ">=2.34.1" },
-    { name = "fastapi", specifier = ">=0.115.0" },
-    { name = "httpx", specifier = ">=0.28.1" },
-    { name = "httpx", marker = "extra == 'dev'", specifier = ">=0.27.0" },
-    { name = "pydantic-settings", specifier = ">=2.13.1" },
-    { name = "pyjwt", specifier = ">=2.12.1" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
-    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.24.0" },
-    { name = "redis", extras = ["asyncio"], specifier = ">=5.3.1" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.9.0" },
-    { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.48" },
-    { name = "uvicorn", extras = ["standard"], specifier = ">=0.30.0" },
-]
-provides-extras = ["dev"]
-
-[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1057,6 +1009,54 @@ sdist = { url = "https://files.pythonhosted.org/packages/81/69/17425771797c36cde
 wheels = [
     { url = "https://files.pythonhosted.org/packages/0b/c9/584bc9651441b4ba60cc4d557d8a547b5aff901af35bda3a4ee30c819b82/starlette-1.0.0-py3-none-any.whl", hash = "sha256:d3ec55e0bb321692d275455ddfd3df75fff145d009685eb40dc91fc66b03d38b", size = 72651, upload-time = "2026-03-22T18:29:45.111Z" },
 ]
+
+[[package]]
+name = "template-backend"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "alembic" },
+    { name = "arq" },
+    { name = "asyncpg" },
+    { name = "authlib" },
+    { name = "fastapi" },
+    { name = "httpx" },
+    { name = "pydantic-settings" },
+    { name = "pyjwt" },
+    { name = "redis" },
+    { name = "sqlalchemy", extra = ["asyncio"] },
+    { name = "uvicorn", extra = ["standard"] },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "fakeredis" },
+    { name = "httpx" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "alembic", specifier = ">=1.18.4" },
+    { name = "arq", specifier = ">=0.27.0" },
+    { name = "asyncpg", specifier = ">=0.31.0" },
+    { name = "authlib", specifier = ">=1.6.9" },
+    { name = "fakeredis", extras = ["aioredis"], marker = "extra == 'dev'", specifier = ">=2.34.1" },
+    { name = "fastapi", specifier = ">=0.115.0" },
+    { name = "httpx", specifier = ">=0.28.1" },
+    { name = "httpx", marker = "extra == 'dev'", specifier = ">=0.27.0" },
+    { name = "pydantic-settings", specifier = ">=2.13.1" },
+    { name = "pyjwt", specifier = ">=2.12.1" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.24.0" },
+    { name = "redis", extras = ["asyncio"], specifier = ">=5.3.1" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.9.0" },
+    { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.48" },
+    { name = "uvicorn", extras = ["standard"], specifier = ">=0.30.0" },
+]
+provides-extras = ["dev"]
 
 [[package]]
 name = "typing-extensions"
