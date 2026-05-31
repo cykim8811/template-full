@@ -4,6 +4,11 @@ function requireServerEnv(name: string): string {
   return value;
 }
 
+// Lazy getters so Next.js's build-time page collection doesn't throw before
+// the platform has had a chance to inject the env vars. Each value is still
+// required at request time.
 export const serverEnv = {
-  BACKEND_URL: requireServerEnv("BACKEND_URL"),
+  get BACKEND_URL() {
+    return requireServerEnv("BACKEND_URL");
+  },
 };
