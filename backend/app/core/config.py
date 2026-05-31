@@ -7,8 +7,11 @@ class Settings(BaseSettings):
     secret_key: str
     debug: bool = False
 
-    github_client_id: str
-    github_client_secret: str
+    # GitHub OAuth — optional so the backend can start without provider
+    # credentials. Endpoints that require them check for presence and
+    # surface a clean 503 when missing.
+    github_client_id: str | None = None
+    github_client_secret: str | None = None
     github_redirect_uri: str = "http://localhost:3000/api/auth/github/callback"
 
     google_client_id: str | None = None
