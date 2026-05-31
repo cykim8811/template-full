@@ -1,0 +1,33 @@
+# coders.kr multi-service deploy manifest.
+# Spec lives at https://github.com/cykim8811/coders-platform.
+
+version: "1"
+
+services:
+  web:
+    dockerfile: frontend/Dockerfile
+    context: frontend
+    port: 3000
+    expose: public
+    env:
+      # Server-rendered components proxy through here; client code uses
+      # a public URL set at build time elsewhere if needed.
+      BACKEND_URL: ${api.internal_url}
+      NODE_ENV: production
+
+  api:
+    dockerfile: backend/Dockerfile
+    context: backend
+    port: 8000
+    env:
+      DATABASE_URL: postgresql+asyncpg://${db.user}:${db.password}@${db.host}:${db.port}/${db.name}
+      REDIS_URL: redis://${redis.host}:${redis.port}
+      SECRET_KEY: ${secrets.secret_key}
+      DEBUG: "false"
+
+  db:
+    type: postgres
+    size: 1Gi
+
+  redis:
+    type: redis
