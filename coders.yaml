@@ -2,6 +2,8 @@
 # Spec lives at https://github.com/cykim8811/coders-platform.
 
 version: "1"
+mode: standalone
+
 
 services:
   web:
