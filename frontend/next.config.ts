@@ -2,24 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  // Proxy /api/* to the backend as a fallback rewrite. This ensures Next.js
-  // API Routes (auth BFF: callback, logout, refresh, me) are matched first,
-  // and only unmatched /api/* requests are forwarded to the backend.
-  async rewrites() {
-    return {
-      beforeFiles: [],
-      afterFiles: [],
-      fallback: [
-        {
-          source: "/api/:path*",
-          // BACKEND_URL is injected at pod start; Next.js validates the
-          // destination at build time, so we fall back to a syntactically
-          // valid placeholder there.
-          destination: `${process.env.BACKEND_URL ?? "http://localhost:8000"}/:path*`,
-        },
-      ],
-    };
-  },
+  // Reverse-proxying /api/* to the backend is done in middleware.ts so
+  // BACKEND_URL is read at request time rather than baked into the
+  // build. `next.config.ts` rewrites are evaluated at build time and
+  // freeze whatever value process.env.BACKEND_URL had when the image
+  // was built — fine for local dev, broken for any environment where
+  // the backend lives at a different URL than during the build.
 };
 
 export default nextConfig;
