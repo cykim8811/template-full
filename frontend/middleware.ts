@@ -91,4 +91,10 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  // Run on the Node.js runtime (not the default Edge runtime) so the
+  // middleware can read process.env.BACKEND_URL at request time. On
+  // Edge, runtime env access is restricted to `NEXT_PUBLIC_*` and the
+  // explicit `env` block in next.config.ts — both inappropriate here
+  // because BACKEND_URL is a server-only address.
+  runtime: "nodejs",
 };
